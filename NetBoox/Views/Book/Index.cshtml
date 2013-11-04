@@ -1,0 +1,14 @@
+﻿@model IList<NetBoox.Models.Genre>
+@{
+    ViewBag.Title = "Books Page";
+}
+<h1>List of genres</h1>
+
+<ul>
+    @foreach (var genre in Model) 
+    {
+        <li>
+            @Html.ActionLink(genre.GenreName, "Genre", new { genreId = genre.GenreId })
+        </li>
+    }
+</ul>

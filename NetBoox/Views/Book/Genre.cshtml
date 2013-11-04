@@ -1,0 +1,17 @@
+﻿@model NetBoox.ViewModels.GenreViewModel
+
+@{
+    ViewBag.Title = "Genre";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Genre: @Model.Genre.GenreName</h2>
+
+<ul>
+    @foreach (var book in Model.Books) 
+    {
+        <li>
+            @Html.ActionLink(book.BookName, "Book", new { bookId = book.BookId })
+        </li>
+    }
+</ul>
