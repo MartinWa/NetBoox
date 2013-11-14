@@ -1,7 +1,6 @@
-﻿using System.Web;
-using System.Web.Optimization;
+﻿using System.Web.Optimization;
 
-namespace NetBoox
+namespace NetBoox.App_Start
 {
     public class BundleConfig
     {

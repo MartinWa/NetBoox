@@ -1,11 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using Microsoft.Web.WebPages.OAuth;
-using NetBoox.Models;
-
-namespace NetBoox
+﻿namespace NetBoox.App_Start
 {
     public static class AuthConfig
     {

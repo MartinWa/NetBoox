@@ -9,7 +9,7 @@ namespace NetBoox.Migrations
         {
             DropForeignKey("dbo.Book", "Genre_GenreId", "dbo.Genre");
             DropIndex("dbo.Book", new[] { "Genre_GenreId" });
-            AddColumn("dbo.Book", "GenreId", c => c.Int(nullable: false));
+            AddColumn("dbo.Book", "GenreId", c => c.Int(false));
             DropColumn("dbo.Book", "Genre_GenreId");
         }
         

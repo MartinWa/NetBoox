@@ -1,49 +1,58 @@
-﻿using NetBoox.Models;
+﻿using System.Linq;
+using DataAccess;
+using Domain;
 using NetBoox.ViewModels;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
 using System.Web.Mvc;
+using Repository;
 
 namespace NetBoox.Controllers
 {
     public class BookController : Controller
     {
+        private readonly IRepository<Book> _bookRepository;
+        private readonly IRepository<Genre> _genreRepository;
+
+        // TODO MW Use Ninject for this and remove this constructor
+        public BookController()
+        {
+            var context = new BooksContext();
+            _bookRepository = new Repository<Book>(context);
+            _genreRepository = new Repository<Genre>(context);
+        }
+
+        public BookController(IRepository<Book> bookRepositoryrepository, IRepository<Genre> genreRepository)
+        {
+            _bookRepository = bookRepositoryrepository;
+            _genreRepository = genreRepository;
+        }
+
         public ActionResult Index()
         {
-            IList<Genre> genres = null;
-            using (var context = new BooksContext()) 
-            {
-                genres = context.Genres.ToList();
-            }
-            return View(genres);
+            return View(_genreRepository.Get());
         }
 
         public ActionResult Genre(int genreId)
         {
-            GenreViewModel genreViewModel = new GenreViewModel();
-
-            using (var context = new BooksContext())
+            var genreViewModel = new GenreViewModel
             {
-                genreViewModel.Genre = context.Genres.FirstOrDefault(g => g.GenreId == genreId);
-                genreViewModel.Books = context.Books.Where(b => b.GenreId == genreViewModel.Genre.GenreId).ToList();
-            }
-
+                Genre = _genreRepository.Get().FirstOrDefault(g => g.GenreId == genreId),
+                Books = _bookRepository.Get().Where(b => b.GenreId == genreId)
+            };
             return View(genreViewModel);
         }
 
         public ActionResult Book(int bookId)
         {
-            BookViewModel bookViewModel = new BookViewModel();
-
-            using (var context = new BooksContext())
-            {
-                bookViewModel.Book = context.Books.FirstOrDefault(b => b.BookId == bookId);
-                bookViewModel.Genre = context.Genres.FirstOrDefault(g => g.GenreId == bookViewModel.Book.GenreId);
-            }
-
+            var bookViewModel = new BookViewModel { Book = _bookRepository.Get().FirstOrDefault(b => b.BookId == bookId) };
+            bookViewModel.Genre = _genreRepository.Get().FirstOrDefault(g => g.GenreId == bookViewModel.Book.GenreId);
             return View(bookViewModel);
+        }
+
+        protected override void Dispose(bool disposing)
+        {
+            _bookRepository.Dispose();
+            _genreRepository.Dispose();
+            base.Dispose(disposing);
         }
     }
 }
