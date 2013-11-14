@@ -9,49 +9,43 @@ namespace NetBoox.Controllers
 {
     public class BookController : Controller
     {
-        private readonly IRepository<Book> _bookRepository;
-        private readonly IRepository<Genre> _genreRepository;
+        private readonly IUnitOfWork _unitOfWork;
 
         // TODO MW Use Ninject for this and remove this constructor
         public BookController()
         {
-            var context = new BooksContext();
-            _bookRepository = new Repository<Book>(context);
-            _genreRepository = new Repository<Genre>(context);
+            _unitOfWork = new UnitOfWork(new BooksContext());
         }
-
-        public BookController(IRepository<Book> bookRepositoryrepository, IRepository<Genre> genreRepository)
+        public BookController(IUnitOfWork unitOfWork)
         {
-            _bookRepository = bookRepositoryrepository;
-            _genreRepository = genreRepository;
+            _unitOfWork = unitOfWork;
         }
 
         public ActionResult Index()
         {
-            return View(_genreRepository.Get());
+            return View(_unitOfWork.Repository<Genre>().Get());
         }
 
         public ActionResult Genre(int genreId)
         {
             var genreViewModel = new GenreViewModel
             {
-                Genre = _genreRepository.Get().FirstOrDefault(g => g.GenreId == genreId),
-                Books = _bookRepository.Get().Where(b => b.GenreId == genreId)
+                Genre = _unitOfWork.Repository<Genre>().Get().FirstOrDefault(g => g.GenreId == genreId),
+                Books = _unitOfWork.Repository<Book>().Get().Where(b => b.GenreId == genreId)
             };
             return View(genreViewModel);
         }
 
         public ActionResult Book(int bookId)
         {
-            var bookViewModel = new BookViewModel { Book = _bookRepository.Get().FirstOrDefault(b => b.BookId == bookId) };
-            bookViewModel.Genre = _genreRepository.Get().FirstOrDefault(g => g.GenreId == bookViewModel.Book.GenreId);
+            var bookViewModel = new BookViewModel { Book = _unitOfWork.Repository<Book>().Get().FirstOrDefault(b => b.BookId == bookId) };
+            bookViewModel.Genre = _unitOfWork.Repository<Genre>().Get().FirstOrDefault(g => g.GenreId == bookViewModel.Book.GenreId);
             return View(bookViewModel);
         }
 
         protected override void Dispose(bool disposing)
         {
-            _bookRepository.Dispose();
-            _genreRepository.Dispose();
+            _unitOfWork.Dispose();
             base.Dispose(disposing);
         }
     }
