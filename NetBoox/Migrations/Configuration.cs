@@ -25,7 +25,14 @@ namespace NetBoox.Migrations
               new Genre { GenreName = "Mystery" },
               new Genre { GenreName = "Action" }
             );
-            //
+            context.Books.AddOrUpdate(
+                b => b.BookName,
+                new Book { BookName = "Othello", GenreId = 1},
+                new Book { BookName = "Romeo and Juliet", GenreId = 1 },
+                new Book { BookName = "The Perils of Sherlock Holmes", GenreId = 2 },
+                new Book { BookName = "Inferno", GenreId = 2 },
+                new Book { BookName = "Patriot Games", GenreId = 3 }
+                );
         }
     }
 }
