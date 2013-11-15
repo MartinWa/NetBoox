@@ -11,11 +11,6 @@ namespace NetBoox.Controllers
     {
         private readonly IUnitOfWork _unitOfWork;
 
-        // TODO MW Use Ninject for this and remove this constructor
-        public BookController()
-        {
-            _unitOfWork = new UnitOfWork(new BooksContext());
-        }
         public BookController(IUnitOfWork unitOfWork)
         {
             _unitOfWork = unitOfWork;
