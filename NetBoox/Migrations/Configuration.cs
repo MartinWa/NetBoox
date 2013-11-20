@@ -27,11 +27,11 @@ namespace NetBoox.Migrations
             );
             context.Books.AddOrUpdate(
                 b => b.BookName,
-                new Book { BookName = "Othello", GenreId = 1},
-                new Book { BookName = "Romeo and Juliet", GenreId = 1 },
-                new Book { BookName = "The Perils of Sherlock Holmes", GenreId = 2 },
-                new Book { BookName = "Inferno", GenreId = 2 },
-                new Book { BookName = "Patriot Games", GenreId = 3 }
+                new Book { BookName = "Othello", GenreId = 1, Author = "William Shakespeare", Rating = 5 },
+                new Book { BookName = "Romeo and Juliet", GenreId = 1, Author = "William Shakespeare", Rating = 5 },
+                new Book { BookName = "The Perils of Sherlock Holmes", GenreId = 2, Author = "Arthur Conan Doyle", Rating = 5 },
+                new Book { BookName = "Inferno", GenreId = 2, Author = "Dan Brown", Rating = 5 },
+                new Book { BookName = "Patriot Games", GenreId = 3, Author = "Tom Clancy", Rating = 5 }
                 );
         }
     }

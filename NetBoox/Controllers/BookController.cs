@@ -1,5 +1,6 @@
 ﻿using System.Linq;
-using DataAccess;
+using System.Net;
+using AutoMapper;
 using Domain;
 using NetBoox.ViewModels;
 using System.Web.Mvc;
@@ -31,12 +32,41 @@ namespace NetBoox.Controllers
             return View(genreViewModel);
         }
 
-        public ActionResult Book(int bookId)
+        public ActionResult Book(int? bookId)
         {
-            var bookViewModel = new BookViewModel { Book = _unitOfWork.Repository<Book>().Get().FirstOrDefault(b => b.BookId == bookId) };
-            bookViewModel.Genre = _unitOfWork.Repository<Genre>().Get().FirstOrDefault(g => g.GenreId == bookViewModel.Book.GenreId);
+            if (bookId == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            var book = _unitOfWork.Repository<Book>().FindById((int)bookId);
+            if (book == null)
+            {
+                return HttpNotFound();
+            }
+            var bookViewModel = Mapper.Map<BookViewModel>(book);
             return View(bookViewModel);
         }
+
+        [HttpPost]
+        public ActionResult Book(BookViewModel newBook)
+        {
+            if (ModelState.IsValid)
+            {
+                var model = new Book
+                {
+                    BookName = newBook.Title,
+                    Author = newBook.Author,
+                    GenreId = newBook.GenreId,
+                    Rating = newBook.Rating
+                };
+                _unitOfWork.Repository<Book>().Insert(model);
+                _unitOfWork.Save();
+                return RedirectToAction("Genre", new { genreId = newBook.GenreId });
+            }
+            return View(newBook);
+        }
+
+
 
         protected override void Dispose(bool disposing)
         {
