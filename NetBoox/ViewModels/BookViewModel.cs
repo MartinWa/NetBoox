@@ -4,6 +4,7 @@ namespace NetBoox.ViewModels
 {
     public class BookViewModel
     {
+        public int BookId { get; set; }
         [Required]
         public string Title { get; set; }
         [Required]

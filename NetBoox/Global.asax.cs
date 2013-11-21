@@ -2,6 +2,7 @@
 using System.Web.Mvc;
 using System.Web.Optimization;
 using System.Web.Routing;
+using AutoMapper;
 using NetBoox.App_Start;
 
 namespace NetBoox
@@ -21,6 +22,7 @@ namespace NetBoox
             BundleConfig.RegisterBundles(BundleTable.Bundles);
             AuthConfig.RegisterAuth();
             AutoMapperConfiguration.Configure();
+            Mapper.AssertConfigurationIsValid();
         }
     }
 }

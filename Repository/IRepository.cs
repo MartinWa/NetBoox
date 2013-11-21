@@ -7,8 +7,9 @@ namespace Repository
     {
         IEnumerable<T> Get();
         T FindById(int id);
-        void Insert(T entity);
-        void Delete(int id);
+        T FindById(int? id);
+        void Add(T entity);
+        void Delete(T entity);
         void Update(T entity);
     }
 }

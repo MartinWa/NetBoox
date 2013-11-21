@@ -1,14 +1,49 @@
-﻿@model IEnumerable<Domain.Genre>
-@{
-    ViewBag.Title = "Books Page";
-}
-<h1>List of genres</h1>
+﻿@model IEnumerable<NetBoox.ViewModels.BookViewModel>
 
-<ul>
-    @foreach (var genre in Model) 
-    {
-        <li>
-            @Html.ActionLink(genre.GenreName, "Genre", new { genreId = genre.GenreId })
-        </li>
+    @{
+        ViewBag.Title = "Books";
     }
-</ul>
+
+    <h2>Books</h2>
+
+    <table class="table">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Title)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Author)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Rating)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.GenreId)
+            </th>
+            <th></th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Title)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Author)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Rating)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.GenreId)
+                </td>
+                <td>
+                    @Html.ActionLink("Edit", "Edit", new { id = item.BookId }) |
+                    @Html.ActionLink("Details", "Details", new { id = item.BookId }) |
+                    @Html.ActionLink("Delete", "Delete", new { id = item.BookId })
+                </td>
+            </tr>
+        }
+    </table>
+    <p>@Html.ActionLink("Create New", "Create")</p>

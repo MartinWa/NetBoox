@@ -31,7 +31,7 @@ namespace Repository
             return (IRepository<T>)_repositories[type];
         }
 
-        public void Save()
+        public void SaveChanges()
         {
             _context.SaveChanges();
         }

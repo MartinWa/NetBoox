@@ -8,20 +8,20 @@ using Repository;
 
 namespace NetBoox.Controllers
 {
-    public class BookController : Controller
+    public class GenreController : Controller
     {
         private readonly IUnitOfWork _unitOfWork;
 
-        public BookController(IUnitOfWork unitOfWork)
+        public GenreController(IUnitOfWork unitOfWork)
         {
             _unitOfWork = unitOfWork;
         }
 
         public ActionResult Index()
         {
-            var books = _unitOfWork.Repository<Book>().Get();
-            var booksViewModel = Mapper.Map<IEnumerable<Book>, IEnumerable<BookViewModel>>(books);
-            return View(booksViewModel);
+            var genres = _unitOfWork.Repository<Genre>().Get();
+            var genreViewModels = Mapper.Map<IEnumerable<Genre>, IEnumerable<GenreViewModel>>(genres);
+            return View(genreViewModels);
         }
 
         public ActionResult Details(int? id)
@@ -30,13 +30,13 @@ namespace NetBoox.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            var book = _unitOfWork.Repository<Book>().FindById(id);
-            if (book == null)
+            var genre = _unitOfWork.Repository<Genre>().FindById(id);
+            if (genre == null)
             {
                 return HttpNotFound();
             }
-            var bookViewModel = Mapper.Map<BookViewModel>(book);
-            return View(bookViewModel);
+            var genreViewModel = Mapper.Map<GenreViewModel>(genre);
+            return View(genreViewModel);
         }
 
         public ActionResult Create()
@@ -46,16 +46,16 @@ namespace NetBoox.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(BookViewModel bookViewModel)
+        public ActionResult Create(GenreViewModel genreViewModel)
         {
             if (ModelState.IsValid)
             {
-                var book = Mapper.Map<Book>(bookViewModel);
-                _unitOfWork.Repository<Book>().Add(book);
+                var genre = Mapper.Map<Genre>(genreViewModel);
+                _unitOfWork.Repository<Genre>().Add(genre);
                 _unitOfWork.SaveChanges();
                 return RedirectToAction("Index");
             }
-            return View(bookViewModel);
+            return View(genreViewModel);
         }
 
         public ActionResult Edit(int? id)
@@ -64,50 +64,51 @@ namespace NetBoox.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            var book = _unitOfWork.Repository<Book>().FindById(id);
-            if (book == null)
+            var genre = _unitOfWork.Repository<Genre>().FindById(id);
+            if (genre == null)
             {
                 return HttpNotFound();
             }
-            var bookViewModel = Mapper.Map<BookViewModel>(book);
-            return View(bookViewModel);
+            var genreViewModel = Mapper.Map<GenreViewModel>(genre);
+            return View(genreViewModel);
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(BookViewModel bookViewModel)
+        public ActionResult Edit(GenreViewModel genreViewModel)
         {
             if (ModelState.IsValid)
             {
-                var book = Mapper.Map<Book>(bookViewModel);
-                _unitOfWork.Repository<Book>().Update(book);
+                var genre = Mapper.Map<Genre>(genreViewModel);
+                _unitOfWork.Repository<Genre>().Update(genre);
                 _unitOfWork.SaveChanges();
                 return RedirectToAction("Index");
             }
-            return View(bookViewModel);
+            return View(genreViewModel);
         }
 
+        // GET: /Genre/Delete/5
         public ActionResult Delete(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            var book = _unitOfWork.Repository<Book>().FindById(id);
-            if (book == null)
+            var genre = _unitOfWork.Repository<Genre>().FindById(id);
+            if (genre == null)
             {
                 return HttpNotFound();
             }
-            var bookViewModel = Mapper.Map<BookViewModel>(book);
-            return View(bookViewModel);
+            var genreViewModel = Mapper.Map<GenreViewModel>(genre);
+            return View(genreViewModel);
         }
 
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            var book = _unitOfWork.Repository<Book>().FindById(id);
-            _unitOfWork.Repository<Book>().Delete(book);
+            var genre = _unitOfWork.Repository<Genre>().FindById(id);
+            _unitOfWork.Repository<Genre>().Delete(genre);
             _unitOfWork.SaveChanges();
             return RedirectToAction("Index");
         }

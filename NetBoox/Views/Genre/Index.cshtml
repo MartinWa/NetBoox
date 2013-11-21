@@ -1,0 +1,22 @@
+﻿@model IEnumerable<NetBoox.ViewModels.GenreViewModel>
+    @{
+        ViewBag.Title = "Genres";
+    }
+
+    <h2>Genres</h2>
+<table class="table">
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.GenreName)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.GenreId }) |
+                @Html.ActionLink("Details", "Details", new { id = item.GenreId }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.GenreId })
+            </td>
+        </tr>
+    }
+</table>
+                      <p>@Html.ActionLink("Create New", "Create")</p>

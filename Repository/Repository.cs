@@ -27,14 +27,18 @@ namespace Repository
             return _dbSet.Find(id);
         }
 
-        public void Insert(T entity)
+        public T FindById(int? id)
+        {
+            return _dbSet.Find(id);
+        }
+
+        public void Add(T entity)
         {
             _dbSet.Add(entity);
         }
 
-        public void Delete(int id)
+        public void Delete(T entity)
         {
-            var entity = _dbSet.Find(id);
             _dbSet.Remove(entity);
         }
 

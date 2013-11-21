@@ -1,11 +1,11 @@
-﻿using System.Collections.Generic;
-using Domain;
+﻿using System.ComponentModel.DataAnnotations;
 
 namespace NetBoox.ViewModels
 {
     public class GenreViewModel
     {
-        public Genre Genre { get; set; }
-        public IEnumerable<Book> Books { get; set; }
+        public int GenreId { get; set; }
+        [Required]
+        public string GenreName { get; set; }
     }
 }
