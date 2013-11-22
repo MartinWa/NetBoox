@@ -22,11 +22,6 @@ namespace Repository
             return _dbSet.ToList();
         }
 
-        public T FindById(int id)
-        {
-            return _dbSet.Find(id);
-        }
-
         public T FindById(int? id)
         {
             return _dbSet.Find(id);
