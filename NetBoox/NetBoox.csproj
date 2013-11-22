@@ -211,6 +211,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="AutoMapper\AutoMapperConfiguration.cs" />
+    <Compile Include="AutoMapper\GenreNameLookupResolver.cs" />
     <Compile Include="AutoMapper\IMapperFacade.cs" />
     <Compile Include="AutoMapper\MapperFacade.cs" />
     <Compile Include="Controllers\BookController.cs" />

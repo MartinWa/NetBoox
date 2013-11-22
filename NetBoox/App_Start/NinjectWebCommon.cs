@@ -1,3 +1,4 @@
+using AutoMapper;
 using DataAccess;
 using NetBoox.AutoMapper;
 using Repository;
@@ -60,7 +61,7 @@ namespace NetBoox.App_Start
             kernel.Bind<IBooksContext>().To<BooksContext>();
             kernel.Bind<IUnitOfWork>().To<UnitOfWork>();
             kernel.Bind<IMapperFacade>().To<MapperFacade>();
-
+            Mapper.Initialize(map => map.ConstructServicesUsing(t => kernel.Get(t)));  // Allows AutoMapper to use Ninject when constructing objects
         }
     }
 }

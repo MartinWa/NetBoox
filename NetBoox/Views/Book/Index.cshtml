@@ -18,7 +18,7 @@
                 @Html.DisplayNameFor(model => model.Rating)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.GenreId)
+                @Html.DisplayNameFor(model => model.GenreName)
             </th>
             <th></th>
         </tr>
@@ -36,7 +36,7 @@
                     @Html.DisplayFor(modelItem => item.Rating)
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.GenreId)
+                    @Html.DisplayFor(modelItem => item.GenreName)
                 </td>
                 <td>
                     @Html.ActionLink("Edit", "Edit", new { id = item.BookId }) |
