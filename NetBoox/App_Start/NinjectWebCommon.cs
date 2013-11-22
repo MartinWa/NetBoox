@@ -1,4 +1,5 @@
 using DataAccess;
+using NetBoox.AutoMapper;
 using Repository;
 
 [assembly: WebActivator.PreApplicationStartMethod(typeof(NetBoox.App_Start.NinjectWebCommon), "Start")]
@@ -14,20 +15,20 @@ namespace NetBoox.App_Start
     using Ninject;
     using Ninject.Web.Common;
 
-    public static class NinjectWebCommon 
+    public static class NinjectWebCommon
     {
         private static readonly Bootstrapper Bootstrapper = new Bootstrapper();
 
         /// <summary>
         /// Starts the application
         /// </summary>
-        public static void Start() 
+        public static void Start()
         {
             DynamicModuleUtility.RegisterModule(typeof(OnePerRequestHttpModule));
             DynamicModuleUtility.RegisterModule(typeof(NinjectHttpModule));
             Bootstrapper.Initialize(CreateKernel);
         }
-        
+
         /// <summary>
         /// Stops the application.
         /// </summary>
@@ -35,7 +36,7 @@ namespace NetBoox.App_Start
         {
             Bootstrapper.ShutDown();
         }
-        
+
         /// <summary>
         /// Creates the kernel that will manage your application.
         /// </summary>
@@ -45,7 +46,7 @@ namespace NetBoox.App_Start
             var kernel = new StandardKernel();
             kernel.Bind<Func<IKernel>>().ToMethod(ctx => () => new Bootstrapper().Kernel);
             kernel.Bind<IHttpModule>().To<HttpApplicationInitializationHttpModule>();
-            
+
             RegisterServices(kernel);
             return kernel;
         }
@@ -58,7 +59,8 @@ namespace NetBoox.App_Start
         {
             kernel.Bind<IBooksContext>().To<BooksContext>();
             kernel.Bind<IUnitOfWork>().To<UnitOfWork>();
+            kernel.Bind<IMapperFacade>().To<MapperFacade>();
 
-        }        
+        }
     }
 }

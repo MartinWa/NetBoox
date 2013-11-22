@@ -3,6 +3,7 @@ using System.Globalization;
 using System.Linq;
 using System.Web.Mvc;
 using Domain;
+using NetBoox.AutoMapper;
 using NetBoox.ViewModels;
 using Repository;
 
@@ -10,7 +11,7 @@ namespace NetBoox.Controllers
 {
     public class BookController : ControllerBase
     {
-        public BookController(IUnitOfWork unitOfWork) : base(unitOfWork) { }
+        public BookController(IUnitOfWork unitOfWork, IMapperFacade mapperFacade) : base(unitOfWork, mapperFacade) { }
 
         public ActionResult Index()
         {
@@ -61,7 +62,7 @@ namespace NetBoox.Controllers
         }
         private List<SelectListItem> CreateGenreList()
         {
-            var genres = _unitOfWork.Repository<Genre>().Get();
+            var genres = UnitOfWork.Repository<Genre>().Get();
             return genres.Select(genre => new SelectListItem { Text = genre.GenreName, Value = genre.GenreId.ToString(CultureInfo.InvariantCulture) }).ToList();
         }
     }

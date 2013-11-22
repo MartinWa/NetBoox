@@ -13,5 +13,6 @@ namespace NetBoox.ViewModels
         public int Rating { get; set; }
         [Required]
         public int GenreId { get; set; }
+        public string GenreName { get; set; }
     }
 }

@@ -4,12 +4,10 @@ using System.Web.Optimization;
 using System.Web.Routing;
 using AutoMapper;
 using NetBoox.App_Start;
+using NetBoox.AutoMapper;
 
 namespace NetBoox
 {
-    // Note: For instructions on enabling IIS6 or IIS7 classic mode, 
-    // visit http://go.microsoft.com/?LinkId=9394801
-
     public class MvcApplication : System.Web.HttpApplication
     {
         protected void Application_Start()
@@ -22,7 +20,7 @@ namespace NetBoox
             BundleConfig.RegisterBundles(BundleTable.Bundles);
             AuthConfig.RegisterAuth();
             AutoMapperConfiguration.Configure();
-            Mapper.AssertConfigurationIsValid();
+            Mapper.AssertConfigurationIsValid(); // Move this to unit test?
         }
     }
 }

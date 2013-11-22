@@ -1,5 +1,6 @@
 ﻿using System.Web.Mvc;
 using Domain;
+using NetBoox.AutoMapper;
 using NetBoox.ViewModels;
 using Repository;
 
@@ -7,7 +8,7 @@ namespace NetBoox.Controllers
 {
     public class GenreController : ControllerBase
     {
-        public GenreController(IUnitOfWork unitOfWork) : base(unitOfWork) { }
+        public GenreController(IUnitOfWork unitOfWork, IMapperFacade mapperFacade) : base(unitOfWork, mapperFacade) { }
 
         public ActionResult Index()
         {
