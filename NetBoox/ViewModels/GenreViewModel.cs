@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel;
+using System.ComponentModel.DataAnnotations;
 
 namespace NetBoox.ViewModels
 {
@@ -6,6 +7,8 @@ namespace NetBoox.ViewModels
     {
         public int GenreId { get; set; }
         [Required]
+        [DisplayName("Genre")]
+        [StringLength(160)]
         public string GenreName { get; set; }
     }
 }
