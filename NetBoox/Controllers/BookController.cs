@@ -1,4 +1,7 @@
-﻿using System.Web.Mvc;
+﻿using System.Collections.Generic;
+using System.Globalization;
+using System.Linq;
+using System.Web.Mvc;
 using Domain;
 using NetBoox.ViewModels;
 using Repository;
@@ -33,6 +36,8 @@ namespace NetBoox.Controllers
 
         public ActionResult Edit(int? id)
         {
+            var genres = _unitOfWork.Repository<Genre>().Get();
+            ViewBag.GenreId = genres.Select(genre => new SelectListItem {Text = genre.GenreName, Value = genre.GenreId.ToString(CultureInfo.InvariantCulture)}).ToList();
             return FindView<Book, BookViewModel>(id);
         }
 

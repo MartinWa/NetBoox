@@ -9,11 +9,10 @@
     {
         <tr>
             <td>
-                @Html.DisplayFor(modelItem => item.GenreName)
+                @Html.ActionLink(item.GenreName, "Details", new { id = item.GenreId })
             </td>
             <td>
                 @Html.ActionLink("Edit", "Edit", new { id = item.GenreId }) |
-                @Html.ActionLink("Details", "Details", new { id = item.GenreId }) |
                 @Html.ActionLink("Delete", "Delete", new { id = item.GenreId })
             </td>
         </tr>

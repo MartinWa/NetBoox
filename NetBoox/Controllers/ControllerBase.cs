@@ -8,7 +8,7 @@ namespace NetBoox.Controllers
 {
     public class ControllerBase : Controller
     {
-        private readonly IUnitOfWork _unitOfWork;
+        protected readonly IUnitOfWork _unitOfWork;
 
         protected ControllerBase(IUnitOfWork unitOfWork)
         {
