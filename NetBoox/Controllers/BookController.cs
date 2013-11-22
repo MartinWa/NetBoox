@@ -10,7 +10,7 @@ namespace NetBoox.Controllers
 {
     public class BookController : ControllerBase
     {
-        public BookController(IUnitOfWork unitOfWork) : base(unitOfWork){}
+        public BookController(IUnitOfWork unitOfWork) : base(unitOfWork) { }
 
         public ActionResult Index()
         {
@@ -24,6 +24,7 @@ namespace NetBoox.Controllers
 
         public ActionResult Create()
         {
+            ViewBag.GenreId = CreateGenreList();
             return View();
         }
 
@@ -31,13 +32,12 @@ namespace NetBoox.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create(BookViewModel bookViewModel)
         {
-            return CreateView<Book,BookViewModel>(bookViewModel);
+            return CreateView<Book, BookViewModel>(bookViewModel);
         }
 
         public ActionResult Edit(int? id)
         {
-            var genres = _unitOfWork.Repository<Genre>().Get();
-            ViewBag.GenreId = genres.Select(genre => new SelectListItem {Text = genre.GenreName, Value = genre.GenreId.ToString(CultureInfo.InvariantCulture)}).ToList();
+            ViewBag.GenreId = CreateGenreList();
             return FindView<Book, BookViewModel>(id);
         }
 
@@ -58,6 +58,11 @@ namespace NetBoox.Controllers
         public ActionResult DeleteConfirmed(int id)
         {
             return DeleteView<Book>(id);
+        }
+        private List<SelectListItem> CreateGenreList()
+        {
+            var genres = _unitOfWork.Repository<Genre>().Get();
+            return genres.Select(genre => new SelectListItem { Text = genre.GenreName, Value = genre.GenreId.ToString(CultureInfo.InvariantCulture) }).ToList();
         }
     }
 }
