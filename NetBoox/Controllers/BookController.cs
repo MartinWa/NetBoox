@@ -1,7 +1,4 @@
-﻿using System.Collections.Generic;
-using System.Globalization;
-using System.Linq;
-using System.Web.Mvc;
+﻿using System.Web.Mvc;
 using Domain;
 using NetBoox.AutoMapper;
 using NetBoox.ViewModels;
@@ -25,8 +22,8 @@ namespace NetBoox.Controllers
 
         public ActionResult Create()
         {
-            ViewBag.GenreId = CreateGenreList();
-            return View();
+            var viewModel = MapperFacade.Map<BookViewModel>(new Book());
+            return View(viewModel);
         }
 
         [HttpPost]
@@ -38,7 +35,6 @@ namespace NetBoox.Controllers
 
         public ActionResult Edit(int? id)
         {
-            ViewBag.GenreId = CreateGenreList();
             return FindView<Book, BookViewModel>(id);
         }
 
@@ -59,11 +55,6 @@ namespace NetBoox.Controllers
         public ActionResult DeleteConfirmed(int id)
         {
             return DeleteView<Book>(id);
-        }
-        private List<SelectListItem> CreateGenreList()
-        {
-            var genres = UnitOfWork.Repository<Genre>().Get();
-            return genres.Select(genre => new SelectListItem { Text = genre.GenreName, Value = genre.GenreId.ToString(CultureInfo.InvariantCulture) }).ToList();
         }
     }
 }

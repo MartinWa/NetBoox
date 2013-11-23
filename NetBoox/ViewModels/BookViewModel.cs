@@ -1,5 +1,7 @@
-﻿using System.ComponentModel;
+﻿using System.Collections.Generic;
+using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
+using System.Web.Mvc;
 
 namespace NetBoox.ViewModels
 {
@@ -19,5 +21,6 @@ namespace NetBoox.ViewModels
         public int GenreId { get; set; }
         [DisplayName("Genre")]
         public string GenreName { get; set; }
+        public IEnumerable<SelectListItem> GenreList { get; set; }
     }
 }

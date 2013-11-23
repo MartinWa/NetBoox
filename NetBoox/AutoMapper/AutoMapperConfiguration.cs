@@ -1,4 +1,5 @@
-﻿using AutoMapper;
+﻿using System.Web.UI;
+using AutoMapper;
 using Domain;
 using NetBoox.ViewModels;
 using Ninject;
@@ -11,7 +12,8 @@ namespace NetBoox.AutoMapper
         {
             Mapper.CreateMap<Book, BookViewModel>()
                 .ForMember(dest => dest.Title, opt => opt.MapFrom(src => src.BookName))
-                .ForMember(dest => dest.GenreName, opt => opt.ResolveUsing<GenreNameLookupResolver>());
+                .ForMember(dest => dest.GenreName, opt => opt.ResolveUsing<GenreNameLookupResolver>())
+                .ForMember(dest => dest.GenreList, opt => opt.ResolveUsing<GenreListCreator>());
             Mapper.CreateMap<BookViewModel, Book>()
                 .ForMember(dest => dest.BookName, opt => opt.MapFrom(src => src.Title));
             Mapper.CreateMap<Genre, GenreViewModel>();

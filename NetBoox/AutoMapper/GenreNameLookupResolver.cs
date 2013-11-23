@@ -15,8 +15,8 @@ namespace NetBoox.AutoMapper
 
         protected override string ResolveCore(Book source)
         {
-
-            return _unitOfWork.Repository<Genre>().FindById(source.GenreId).GenreName;
+            var genre = _unitOfWork.Repository<Genre>().FindById(source.GenreId);
+            return genre == null ? "" : genre.GenreName;
         }
     }
 }

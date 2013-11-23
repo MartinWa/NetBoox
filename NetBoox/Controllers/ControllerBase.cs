@@ -23,39 +23,40 @@ namespace NetBoox.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            var book = UnitOfWork.Repository<TModel>().FindById(id);
-            if (book == null)
+            var data = UnitOfWork.Repository<TModel>().FindById(id);
+            if (data == null)
             {
                 return HttpNotFound();
             }
-            var viewModel = MapperFacade.Map<TViewModel>(book);
+            var viewModel = MapperFacade.Map<TViewModel>(data);
             return View(viewModel);
         }
 
         protected ActionResult DeleteView<TModel>(int id) where TModel : class
         {
-            var book = UnitOfWork.Repository<TModel>().FindById(id);
-            UnitOfWork.Repository<TModel>().Delete(book);
-            UnitOfWork.SaveChanges();
-            var controllerName = ControllerContext.RouteData.Values["controller"].ToString();
-            return RedirectToAction("Index", controllerName);
+            var data = UnitOfWork.Repository<TModel>().FindById(id);
+            UnitOfWork.Repository<TModel>().Delete(data);
+            return SaveAndRedirectToAction();
         }
 
-        protected ActionResult EditView<TModel, TViewModel>(TViewModel bookViewModel) where TModel : class
+        protected ActionResult EditView<TModel, TViewModel>(TViewModel viewModel) where TModel : class
         {
-            if (!ModelState.IsValid) return View(bookViewModel);
-            var book = MapperFacade.Map<TModel>(bookViewModel);
-            UnitOfWork.Repository<TModel>().Update(book);
-            UnitOfWork.SaveChanges();
-            var controllerName = ControllerContext.RouteData.Values["controller"].ToString();
-            return RedirectToAction("Index", controllerName);
+            var data = MapperFacade.Map<TModel>(viewModel);
+            if (!ModelState.IsValid) return View(MapperFacade.Map<TViewModel>(data)); // Remapping to allow automapper to inject new values
+            UnitOfWork.Repository<TModel>().Update(data);
+            return SaveAndRedirectToAction();
         }
 
-        protected ActionResult CreateView<TModel, TViewModel>(TViewModel bookViewModel) where TModel : class
+        protected ActionResult CreateView<TModel, TViewModel>(TViewModel viewModel) where TModel : class
         {
-            if (!ModelState.IsValid) return View(bookViewModel);
-            var book = MapperFacade.Map<TModel>(bookViewModel);
-            UnitOfWork.Repository<TModel>().Add(book);
+            var data = MapperFacade.Map<TModel>(viewModel);
+            if (!ModelState.IsValid) return View(MapperFacade.Map<TViewModel>(data));  // Remapping to allow automapper to inject new values
+            UnitOfWork.Repository<TModel>().Add(data);
+            return SaveAndRedirectToAction();
+        }
+
+        private ActionResult SaveAndRedirectToAction()
+        {
             UnitOfWork.SaveChanges();
             var controllerName = ControllerContext.RouteData.Values["controller"].ToString();
             return RedirectToAction("Index", controllerName);
@@ -63,9 +64,9 @@ namespace NetBoox.Controllers
 
         protected ActionResult IndexView<TModel, TViewModel>() where TModel : class
         {
-            var books = UnitOfWork.Repository<TModel>().Get();
-            var booksViewModel = MapperFacade.Map<IEnumerable<TModel>, IEnumerable<TViewModel>>(books);
-            return View(booksViewModel);
+            var data = UnitOfWork.Repository<TModel>().Get();
+            var viewModel = MapperFacade.Map<IEnumerable<TModel>, IEnumerable<TViewModel>>(data);
+            return View(viewModel);
         }
 
         protected override void Dispose(bool disposing)
