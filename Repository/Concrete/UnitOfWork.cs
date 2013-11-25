@@ -1,8 +1,9 @@
 ﻿using System;
 using System.Collections;
 using DataAccess;
+using Repository.Abstract;
 
-namespace Repository
+namespace Repository.Concrete
 {
     public class UnitOfWork : IDisposable, IUnitOfWork
     {

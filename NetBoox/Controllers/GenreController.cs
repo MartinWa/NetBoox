@@ -2,7 +2,7 @@
 using Domain;
 using NetBoox.AutoMapper;
 using NetBoox.ViewModels;
-using Repository;
+using Repository.Abstract;
 
 namespace NetBoox.Controllers
 {

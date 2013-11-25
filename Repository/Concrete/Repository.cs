@@ -1,10 +1,10 @@
 ﻿using System.Collections.Generic;
-using System.Data;
 using System.Data.Entity;
 using System.Linq;
 using DataAccess;
+using Repository.Abstract;
 
-namespace Repository
+namespace Repository.Concrete
 {
     public class Repository<T> : IRepository<T> where T : class
     {

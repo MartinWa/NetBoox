@@ -52,6 +52,19 @@
   <ItemGroup>
     <Compile Include="BooksContext.cs" />
     <Compile Include="IBooksContext.cs" />
+    <Compile Include="Migrations\201311030822183_InitialCreate.cs" />
+    <Compile Include="Migrations\201311030822183_InitialCreate.Designer.cs">
+      <DependentUpon>201311030822183_InitialCreate.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201311030915114_mig1.cs" />
+    <Compile Include="Migrations\201311030915114_mig1.Designer.cs">
+      <DependentUpon>201311030915114_mig1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201311202157135_mig2.cs" />
+    <Compile Include="Migrations\201311202157135_mig2.Designer.cs">
+      <DependentUpon>201311202157135_mig2.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -63,6 +76,17 @@
       <Project>{D8FD5A5B-E0B7-4781-AFD4-6DC8054DB8AD}</Project>
       <Name>Domain</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\201311030822183_InitialCreate.resx">
+      <DependentUpon>201311030822183_InitialCreate.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201311030915114_mig1.resx">
+      <DependentUpon>201311030915114_mig1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201311202157135_mig2.resx">
+      <DependentUpon>201311202157135_mig2.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="$(SolutionDir)\.nuget\NuGet.targets" Condition="Exists('$(SolutionDir)\.nuget\NuGet.targets')" />

@@ -2,7 +2,7 @@
 using System.Net;
 using System.Web.Mvc;
 using NetBoox.AutoMapper;
-using Repository;
+using Repository.Abstract;
 
 namespace NetBoox.Controllers
 {

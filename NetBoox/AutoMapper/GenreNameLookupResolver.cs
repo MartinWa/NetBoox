@@ -1,6 +1,6 @@
 using AutoMapper;
 using Domain;
-using Repository;
+using Repository.Abstract;
 
 namespace NetBoox.AutoMapper
 {

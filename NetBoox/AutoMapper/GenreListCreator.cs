@@ -4,7 +4,7 @@ using System.Linq;
 using System.Web.Mvc;
 using AutoMapper;
 using Domain;
-using Repository;
+using Repository.Abstract;
 
 namespace NetBoox.AutoMapper
 {
