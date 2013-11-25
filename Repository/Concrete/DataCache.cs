@@ -24,7 +24,7 @@ namespace Repository.Concrete
             return _cache.Contains(type) ? (IEnumerable<T>)_cache.Get(type) : Set<T>();
         }
 
-        public IEnumerable<T> Set<T>() where T : class
+        private IEnumerable<T> Set<T>() where T : class
         {
             var type = typeof(T).Name;
             var data = _unitOfWork.Repository<T>().Get();
