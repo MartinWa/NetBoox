@@ -1,5 +1,4 @@
-﻿@using Domain
-@model NetBoox.ViewModels.GenreDetailsViewModel
+﻿@model NetBoox.ViewModels.GenreDetailsViewModel
 
 @{
     ViewBag.Title = @Model.GenreViewModel.GenreName;
@@ -37,44 +36,7 @@
 </table>
 @using (Ajax.BeginForm("AddBook", "Book", new AjaxOptions(){LoadingElementId = "spinner"}))
 {
-    @Html.AntiForgeryToken()
-
-    <div class="form-horizontal">
-        <h4>Add new book</h4>
-        <hr />
-        @Html.ValidationSummary(true)
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.BookViewModel.Title, new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.BookViewModel.Title)
-                @Html.ValidationMessageFor(model => model.BookViewModel.Title)
-            </div>
-        </div>
-        <div class="form-group">
-            @Html.LabelFor(model => model.BookViewModel.Author, new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.BookViewModel.Author)
-                @Html.ValidationMessageFor(model => model.BookViewModel.Author)
-            </div>
-        </div>
-        <div class="form-group">
-            @Html.LabelFor(model => model.BookViewModel.Rating, new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.BookViewModel.Rating)
-                @Html.ValidationMessageFor(model => model.BookViewModel.Rating)
-            </div>
-        </div>
-
-        @Html.Hidden("BookViewModel.GenreId", Model.GenreViewModel.GenreId)
-
-        <div class="form-group">
-            <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Add" class="btn btn-default" />
-            </div>
-        </div>
-    </div>
-     <div class="spinner" id="spinner"></div>
+    Html.RenderPartial("AddBookForm");
 }
 
 <p>
