@@ -7,5 +7,6 @@ namespace Repository.Abstract
     {
         IEnumerable<T> Get<T>() where T : class;
         void SetNewDefaultAbsoluteExpiration(DateTimeOffset absoluteExpiration);
+        void Remove<T>();
     }
 }

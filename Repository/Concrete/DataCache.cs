@@ -36,5 +36,11 @@ namespace Repository.Concrete
         {
             _policy.AbsoluteExpiration = absoluteExpiration;
         }
+
+        public void Remove<T>()
+        {
+            var type = typeof(T).Name;
+            _cache.Remove(type);
+        }
     }
 }

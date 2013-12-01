@@ -40,7 +40,7 @@ namespace NetBoox.Controllers
         {
             var data = UnitOfWork.Repository<TModel>().FindById(id);
             UnitOfWork.Repository<TModel>().Delete(data);
-            return SaveAndRedirectToAction();
+            return SaveAndRedirectToAction<TModel>();
         }
 
         protected ActionResult EditView<TModel, TViewModel>(TViewModel viewModel) where TModel : class
@@ -48,7 +48,7 @@ namespace NetBoox.Controllers
             var data = MapperFacade.Map<TModel>(viewModel);
             if (!ModelState.IsValid) return View(MapperFacade.Map<TViewModel>(data)); // Remapping to allow automapper to inject new values
             UnitOfWork.Repository<TModel>().Update(data);
-            return SaveAndRedirectToAction();
+            return SaveAndRedirectToAction<TModel>();
         }
 
         protected ActionResult CreateView<TModel, TViewModel>(TViewModel viewModel) where TModel : class
@@ -59,12 +59,13 @@ namespace NetBoox.Controllers
                 return View(MapperFacade.Map<TViewModel>(data));  // Remapping to allow automapper to inject new values
             }
             UnitOfWork.Repository<TModel>().Add(data);
-            return SaveAndRedirectToAction();
+            return SaveAndRedirectToAction<TModel>();
         }
 
-        private ActionResult SaveAndRedirectToAction()
+        private ActionResult SaveAndRedirectToAction<TModel>()
         {
             UnitOfWork.SaveChanges();
+            _dataCache.Remove<TModel>(); // Clear the cache as we have change a value
             var controllerName = ControllerContext.RouteData.Values["controller"].ToString();
             return RedirectToAction("Index", controllerName);
         }
