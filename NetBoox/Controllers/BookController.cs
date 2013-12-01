@@ -60,11 +60,15 @@ namespace NetBoox.Controllers
 
         public ActionResult AddBook(BookViewModel bookViewModel)
         {
-            Thread.Sleep(3000);
             var book = MapperFacade.Map<Book>(bookViewModel);
             if (!ModelState.IsValid)
             {
-                return View("Create", MapperFacade.Map<BookViewModel>(book));
+                var viewModel = MapperFacade.Map<BookViewModel>(book);
+                if (Request.IsAjaxRequest())
+                {
+                    return PartialView("AddBookForm", bookViewModel);
+                }
+                return View("Create", viewModel);
             }
             UnitOfWork.Repository<Book>().Add(book);
             UnitOfWork.SaveChanges();

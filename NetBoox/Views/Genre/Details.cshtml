@@ -34,9 +34,10 @@
         </tr>
     }
 </table>
-@using (Ajax.BeginForm("AddBook", "Book", new AjaxOptions(){LoadingElementId = "spinner"}))
+
+@using (Ajax.BeginForm("AddBook", "Book", new AjaxOptions { LoadingElementId = "spinner" }))
 {
-    Html.RenderPartial("AddBookForm");
+    Html.RenderPartial("AddBookForm", Model.BookViewModel);
 }
 
 <p>
@@ -46,5 +47,4 @@
 
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
-    <script src="@Url.Content("~/Scripts/jquery.unobtrusive-ajax.js")" type="text/javascript"></script>
 }
