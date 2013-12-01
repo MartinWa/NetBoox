@@ -1,4 +1,7 @@
-﻿using System.Web.Mvc;
+﻿using System.Collections.Generic;
+using System.Linq;
+using System.Net;
+using System.Web.Mvc;
 using Domain;
 using NetBoox.AutoMapper;
 using NetBoox.ViewModels;
@@ -17,7 +20,19 @@ namespace NetBoox.Controllers
 
         public ActionResult Details(int? id)
         {
-            return FindView<Genre, GenreViewModel>(id);
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            var genre = UnitOfWork.Repository<Genre>().FindById(id);
+            if (genre == null)
+            {
+                return HttpNotFound();
+            }
+            var books = UnitOfWork.Repository<Book>().Get().Where(b => b.GenreId == genre.GenreId);
+            var viewModel = MapperFacade.Map<Genre, GenreDetailsViewModel>(genre);
+            viewModel = MapperFacade.Map(books, viewModel);
+            return View(viewModel);
         }
 
         public ActionResult Create()

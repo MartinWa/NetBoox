@@ -1,26 +1,84 @@
-﻿@model NetBoox.ViewModels.GenreViewModel
+﻿@model NetBoox.ViewModels.GenreDetailsViewModel
 
 @{
-    ViewBag.Title = "Details";
+    ViewBag.Title = @Model.GenreViewModel.GenreName;
 }
 
-<h2>Details</h2>
+<h2>Genre: @Model.GenreViewModel.GenreName</h2>
 
-<div>
-    <h4>Genre</h4>
-	<hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.GenreName)
-        </dt>
+<table class="table">
+    <tr>
+        <th>
+            Title @*@Html.DisplayNameFor(model => model.BookViewModel)*@
+        </th>
+        <th>
+            Author @*@Html.DisplayNameFor(model => model.BookViewModel)*@
+        </th>
+        <th>
+            Rating @*@Html.DisplayNameFor(model => model.BookViewModel)*@
+        </th>
+        <th></th>
+    </tr>
+    @foreach (var book in Model.BookViewModelList)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => book.Title)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => book.Author)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => book.Rating)
+            </td>
+        </tr>
+    }
+</table>
+@using (Html.BeginForm("Create", "Book"))
+{
+    @Html.AntiForgeryToken()
 
-        <dd>
-            @Html.DisplayFor(model => model.GenreName)
-        </dd>
+    <div class="form-horizontal">
+        <h4>Add new book</h4>
+        <hr />
+        @Html.ValidationSummary(true)
 
-    </dl>
-</div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.BookViewModel.Title, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.BookViewModel.Title)
+                @Html.ValidationMessageFor(model => model.BookViewModel.Title)
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.BookViewModel.Author, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.BookViewModel.Author)
+                @Html.ValidationMessageFor(model => model.BookViewModel.Author)
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.BookViewModel.Rating, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.BookViewModel.Rating)
+                @Html.ValidationMessageFor(model => model.BookViewModel.Rating)
+            </div>
+        </div>
+
+        @Html.Hidden("BookViewModel.GenreId", Model.GenreViewModel.GenreId)
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Add" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+}
 <p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.GenreId }) |
+    @Html.ActionLink("Edit genre name", "Edit", new { id = Model.GenreViewModel.GenreId }) |
     @Html.ActionLink("Back to List", "Index")
 </p>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

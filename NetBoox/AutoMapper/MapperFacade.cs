@@ -13,5 +13,10 @@ namespace NetBoox.AutoMapper
         {
             return Mapper.Map<TSource, TDestination>(source);
         }
+
+        public TDestination Map<TSource, TDestination>(TSource source, TDestination destination)
+        {
+            return Mapper.Map(source, destination);
+        }
     }
 }
