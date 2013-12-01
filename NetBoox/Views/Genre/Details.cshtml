@@ -6,38 +6,11 @@
 
 <h2>Genre: @Model.GenreViewModel.GenreName</h2>
 
-<table class="table">
-    <tr>
-        <th>
-            Title @*@Html.DisplayNameFor(model => model.BookViewModel)*@
-        </th>
-        <th>
-            Author @*@Html.DisplayNameFor(model => model.BookViewModel)*@
-        </th>
-        <th>
-            Rating @*@Html.DisplayNameFor(model => model.BookViewModel)*@
-        </th>
-        <th></th>
-    </tr>
-    @foreach (var book in Model.BookViewModelList)
-    {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => book.Title)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => book.Author)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => book.Rating)
-            </td>
-        </tr>
-    }
-</table>
+@{Html.RenderPartial("BookList", Model.BookViewModelList);}
 
-@using (Ajax.BeginForm("AddBook", "Book", new AjaxOptions { LoadingElementId = "spinner" }))
+@using (Ajax.BeginForm("AddBook", "Book", new AjaxOptions { LoadingElementId = "spinner", UpdateTargetId = "booklist" }))
 {
-    Html.RenderPartial("AddBookForm", Model.BookViewModel);
+    Html.RenderPartial("AddBook", Model.BookViewModel);
 }
 
 <p>

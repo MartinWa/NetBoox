@@ -20,7 +20,7 @@ namespace NetBoox.AutoMapper
             Mapper.CreateMap<Genre, GenreDetailsViewModel>()
                 .ForMember(dest => dest.GenreViewModel, opt => opt.MapFrom(src => src))
                 .ForMember(dest => dest.BookViewModelList, opt => opt.Ignore())
-                .ForMember(dest => dest.BookViewModel, opt => opt.MapFrom(src => new BookViewModel { GenreId = src.GenreId, Rating = 1 }));
+                .ForMember(dest => dest.BookViewModel, opt => opt.MapFrom(src => new BookViewModel { GenreId = src.GenreId }));
             Mapper.CreateMap<IEnumerable<Book>, GenreDetailsViewModel>()
                 .ForMember(dest => dest.GenreViewModel, opt => opt.Ignore())
                 .ForMember(dest => dest.BookViewModelList, opt => opt.MapFrom(src => src))

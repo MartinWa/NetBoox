@@ -1,4 +1,5 @@
-﻿using System.Threading;
+﻿using System.Collections.Generic;
+using System.Linq;
 using System.Web.Mvc;
 using Domain;
 using NetBoox.AutoMapper;
@@ -58,21 +59,17 @@ namespace NetBoox.Controllers
             return DeleteView<Book>(id);
         }
 
-        public ActionResult AddBook(BookViewModel bookViewModel)
+        public PartialViewResult AddBook(BookViewModel bookViewModel)
         {
             var book = MapperFacade.Map<Book>(bookViewModel);
             if (!ModelState.IsValid)
             {
-                var viewModel = MapperFacade.Map<BookViewModel>(book);
-                if (Request.IsAjaxRequest())
-                {
-                    return PartialView("AddBookForm", bookViewModel);
-                }
-                return View("Create", viewModel);
+                return PartialView("AddBook", MapperFacade.Map<BookViewModel>(book));
             }
             UnitOfWork.Repository<Book>().Add(book);
             UnitOfWork.SaveChanges();
-            return RedirectToAction("Details", "Genre", new { Id = bookViewModel.GenreId });
+            var data = UnitOfWork.Repository<Book>().Get().Where(b => b.GenreId == book.GenreId);
+            return PartialView("BookList", MapperFacade.Map<IEnumerable<Book>, IEnumerable<BookViewModel>>(data));
         }
     }
 }
