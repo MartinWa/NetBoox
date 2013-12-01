@@ -1,4 +1,5 @@
-﻿using System.Web.Mvc;
+﻿using System.Threading;
+using System.Web.Mvc;
 using Domain;
 using NetBoox.AutoMapper;
 using NetBoox.ViewModels;
@@ -55,6 +56,19 @@ namespace NetBoox.Controllers
         public ActionResult DeleteConfirmed(int id)
         {
             return DeleteView<Book>(id);
+        }
+
+        public ActionResult AddBook(BookViewModel bookViewModel)
+        {
+            Thread.Sleep(3000);
+            var book = MapperFacade.Map<Book>(bookViewModel);
+            if (!ModelState.IsValid)
+            {
+                return View("Create", MapperFacade.Map<BookViewModel>(book));
+            }
+            UnitOfWork.Repository<Book>().Add(book);
+            UnitOfWork.SaveChanges();
+            return RedirectToAction("Details", "Genre", new { Id = bookViewModel.GenreId });
         }
     }
 }

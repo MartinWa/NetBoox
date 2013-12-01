@@ -54,7 +54,10 @@ namespace NetBoox.Controllers
         protected ActionResult CreateView<TModel, TViewModel>(TViewModel viewModel) where TModel : class
         {
             var data = MapperFacade.Map<TModel>(viewModel);
-            if (!ModelState.IsValid) return View(MapperFacade.Map<TViewModel>(data));  // Remapping to allow automapper to inject new values
+            if (!ModelState.IsValid)
+            {
+                return View(MapperFacade.Map<TViewModel>(data));  // Remapping to allow automapper to inject new values
+            }
             UnitOfWork.Repository<TModel>().Add(data);
             return SaveAndRedirectToAction();
         }
