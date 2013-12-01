@@ -1,8 +1,9 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Net;
 using System.Web.Mvc;
 using NetBoox.AutoMapper;
-using Repository;
+using Repository.Abstract;
 
 namespace NetBoox.Controllers
 {
@@ -10,11 +11,14 @@ namespace NetBoox.Controllers
     {
         protected readonly IUnitOfWork UnitOfWork;
         protected readonly IMapperFacade MapperFacade;
+        private readonly IDataCache _dataCache;
 
-        protected ControllerBase(IUnitOfWork unitOfWork, IMapperFacade mapperFacade)
+        protected ControllerBase(IUnitOfWork unitOfWork, IMapperFacade mapperFacade, IDataCache dataCache)
         {
             UnitOfWork = unitOfWork;
             MapperFacade = mapperFacade;
+            _dataCache = dataCache;
+            _dataCache.SetNewDefaultAbsoluteExpiration(DateTimeOffset.Now.AddSeconds(20));
         }
 
         protected ActionResult FindView<TModel, TViewModel>(int? id) where TModel : class
@@ -65,6 +69,13 @@ namespace NetBoox.Controllers
         protected ActionResult IndexView<TModel, TViewModel>() where TModel : class
         {
             var data = UnitOfWork.Repository<TModel>().Get();
+            var viewModel = MapperFacade.Map<IEnumerable<TModel>, IEnumerable<TViewModel>>(data);
+            return View(viewModel);
+        }
+
+        protected ActionResult IndexViewCached<TModel, TViewModel>() where TModel : class
+        {
+            var data = _dataCache.Get<TModel>();
             var viewModel = MapperFacade.Map<IEnumerable<TModel>, IEnumerable<TViewModel>>(data);
             return View(viewModel);
         }

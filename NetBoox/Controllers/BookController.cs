@@ -2,17 +2,17 @@
 using Domain;
 using NetBoox.AutoMapper;
 using NetBoox.ViewModels;
-using Repository;
+using Repository.Abstract;
 
 namespace NetBoox.Controllers
 {
     public class BookController : ControllerBase
     {
-        public BookController(IUnitOfWork unitOfWork, IMapperFacade mapperFacade) : base(unitOfWork, mapperFacade) { }
+        public BookController(IUnitOfWork unitOfWork, IMapperFacade mapperFacade, IDataCache dataCache) : base(unitOfWork, mapperFacade, dataCache) { }
 
         public ActionResult Index()
         {
-            return IndexView<Book, BookViewModel>();
+            return IndexViewCached<Book, BookViewModel>();
         }
 
         public ActionResult Details(int? id)

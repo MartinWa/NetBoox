@@ -1,4 +1,4 @@
-﻿namespace Repository
+﻿namespace Repository.Abstract
 {
     public interface IUnitOfWork
     {

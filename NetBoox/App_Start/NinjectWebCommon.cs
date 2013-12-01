@@ -1,7 +1,9 @@
+using System.Runtime.Caching;
 using AutoMapper;
 using DataAccess;
 using NetBoox.AutoMapper;
-using Repository;
+using Repository.Abstract;
+using Repository.Concrete;
 
 [assembly: WebActivator.PreApplicationStartMethod(typeof(NetBoox.App_Start.NinjectWebCommon), "Start")]
 [assembly: WebActivator.ApplicationShutdownMethodAttribute(typeof(NetBoox.App_Start.NinjectWebCommon), "Stop")]
@@ -62,6 +64,8 @@ namespace NetBoox.App_Start
             kernel.Bind<IUnitOfWork>().To<UnitOfWork>();
             kernel.Bind<IMapperFacade>().To<MapperFacade>();
             Mapper.Initialize(map => map.ConstructServicesUsing(t => kernel.Get(t)));  // Allows AutoMapper to use Ninject when constructing objects
+            kernel.Bind<IDataCache>().To<DataCache>();
+            kernel.Bind<ObjectCache>().ToConstant(MemoryCache.Default);
         }
     }
 }

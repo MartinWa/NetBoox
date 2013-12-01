@@ -1,34 +1,33 @@
+using System;
 using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using System.Web.Mvc;
 using AutoMapper;
 using Domain;
-using Repository;
+using Repository.Abstract;
 
 namespace NetBoox.AutoMapper
 {
     public class GenreListCreator : ValueResolver<Book, IEnumerable<SelectListItem>>
     {
-        private readonly IUnitOfWork _unitOfWork;
+        private readonly IDataCache _dataCache;
 
-        public GenreListCreator(IUnitOfWork unitOfWork)
+        public GenreListCreator(IDataCache dataCache)
         {
-            _unitOfWork = unitOfWork;
+            _dataCache = dataCache;
+            _dataCache.SetNewDefaultAbsoluteExpiration(DateTimeOffset.Now.AddSeconds(10));
         }
 
         protected override IEnumerable<SelectListItem> ResolveCore(Book source)
         {
+            var genres = _dataCache.Get<Genre>();
 
-            var genres = _unitOfWork.Repository<Genre>().Get();
-
-            return genres.Select(
-                    genre =>
-                        new SelectListItem
-                        {
-                            Text = genre.GenreName,
-                            Value = genre.GenreId.ToString(CultureInfo.InvariantCulture)
-                        });
+            return genres.Select(genre => new SelectListItem
+            {
+                Text = genre.GenreName,
+                Value = genre.GenreId.ToString(CultureInfo.InvariantCulture)
+            });
         }
     }
 }

@@ -5,13 +5,13 @@ using System.Web.Mvc;
 using Domain;
 using NetBoox.AutoMapper;
 using NetBoox.ViewModels;
-using Repository;
+using Repository.Abstract;
 
 namespace NetBoox.Controllers
 {
     public class GenreController : ControllerBase
     {
-        public GenreController(IUnitOfWork unitOfWork, IMapperFacade mapperFacade) : base(unitOfWork, mapperFacade) { }
+        public GenreController(IUnitOfWork unitOfWork, IMapperFacade mapperFacade, IDataCache dataCache) : base(unitOfWork, mapperFacade, dataCache) { }
 
         public ActionResult Index()
         {
