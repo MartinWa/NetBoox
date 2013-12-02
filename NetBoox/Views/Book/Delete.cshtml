@@ -1,12 +1,12 @@
 ﻿@model NetBoox.ViewModels.BookViewModel
 
 @{
-    ViewBag.Title = "Delete";
+    ViewBag.Title = @Language.Delete;
 }
 
-<h2>Delete</h2>
+<h2>@Language.Delete</h2>
 
-<h3>Are you sure you want to delete this?</h3>
+<h3>@Language.AreYouSureDelete</h3>
 <div>
     <h4>Book</h4>
     <hr />
@@ -36,11 +36,11 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.GenreId)
+            @Html.DisplayNameFor(model => model.GenreName)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.GenreId)
+            @Html.DisplayFor(model => model.GenreName)
         </dd>
 
     </dl>
@@ -49,7 +49,7 @@
         @Html.AntiForgeryToken()
 
         <div class="form-actions no-color">
-            <input type="submit" value="Delete" class="btn btn-default" /> |
+            <input type="submit" value=@Language.Delete class="btn btn-default" /> |
             @Html.ActionLink("Back to List", "Index")
         </div>
     }

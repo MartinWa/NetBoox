@@ -117,8 +117,50 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="Add" xml:space="preserve">
+    <value>[Åđđ !!! !!!]</value>
+  </data>
+  <data name="AddNewBook" xml:space="preserve">
+    <value>[Åđđ ŉęŵ þőőĸ !!! !!!]</value>
+  </data>
+  <data name="AnErrorOccuredProcessingRequest" xml:space="preserve">
+    <value>[Åŉ ęřřőř őččūřřęđ ŵĥįľę přőčęşşįŉģ yőūř řęqūęşŧ. !!! !!! !!!]</value>
+  </data>
+  <data name="AreYouSureDelete" xml:space="preserve">
+    <value>[Åřę yőū şūřę yőū ŵäŉŧ ŧő đęľęŧę ŧĥįş? !!! !!!]</value>
+  </data>
   <data name="Author" xml:space="preserve">
     <value>[Åūŧĥőř !!! !!! !!! !!! !!!]</value>
+  </data>
+  <data name="Back" xml:space="preserve">
+    <value>[ßäčĸ !!! !!! !!!]</value>
+  </data>
+  <data name="Book" xml:space="preserve">
+    <value>[ßőőĸ !!! !!! !!!]</value>
+  </data>
+  <data name="Books" xml:space="preserve">
+    <value>[ßőőĸş !!! !!! !!! !!!]</value>
+  </data>
+  <data name="Create" xml:space="preserve">
+    <value>[Cřęäŧę !!! !!! !!! !!! !!!]</value>
+  </data>
+  <data name="CreateNew" xml:space="preserve">
+    <value>[Cřęäŧę ŉęŵ !!! !!!]</value>
+  </data>
+  <data name="Delete" xml:space="preserve">
+    <value>[Đęľęŧę !!! !!! !!! !!! !!!]</value>
+  </data>
+  <data name="Details" xml:space="preserve">
+    <value>[Đęŧäįľş !!! !!! !!! !!! !!! !!!]</value>
+  </data>
+  <data name="Edit" xml:space="preserve">
+    <value>[Ēđįŧ !!! !!! !!!]</value>
+  </data>
+  <data name="EditGenreName" xml:space="preserve">
+    <value>[Ēđįŧ ģęŉřę ŉämę !!! !!!]</value>
+  </data>
+  <data name="Error" xml:space="preserve">
+    <value>[Ēřřőř !!! !!! !!! !!!]</value>
   </data>
   <data name="FieldMaxLength160" xml:space="preserve">
     <value>[Ŧĥįş ƒįęľđ čäŉ þę mäχįmūm 160 čĥäřäčŧęřş ľőŉģ !!! !!!]</value>
@@ -129,11 +171,20 @@
   <data name="Genre" xml:space="preserve">
     <value>[Ğęŉřę !!! !!! !!! !!!]</value>
   </data>
+  <data name="Genres" xml:space="preserve">
+    <value>[Ğęŉřęş !!! !!! !!! !!! !!!]</value>
+  </data>
+  <data name="NetBoox" xml:space="preserve">
+    <value>[Ńęŧßőőχ !!! !!! !!! !!! !!! !!!]</value>
+  </data>
   <data name="Range1to5" xml:space="preserve">
     <value>[Väľūę ĥäş ŧő þę þęŧŵęęŉ 1 äŉđ 5 !!! !!!]</value>
   </data>
   <data name="Rating" xml:space="preserve">
     <value>[Ŗäŧįŉģ !!! !!! !!! !!! !!!]</value>
+  </data>
+  <data name="Save" xml:space="preserve">
+    <value>[Ŝävę !!! !!! !!!]</value>
   </data>
   <data name="Title" xml:space="preserve">
     <value>[Ŧįŧľę !!! !!! !!! !!!]</value>

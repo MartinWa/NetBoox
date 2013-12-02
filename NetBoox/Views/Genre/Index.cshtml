@@ -1,9 +1,9 @@
 ﻿@model IEnumerable<NetBoox.ViewModels.GenreViewModel>
     @{
-        ViewBag.Title = "Genres";
+        ViewBag.Title = @Language.Genres;
     }
 
-    <h2>Genres</h2>
+    <h2>@Language.Genres</h2>
 <table class="table">
     @foreach (var item in Model)
     {
@@ -12,10 +12,10 @@
                 @Html.ActionLink(item.GenreName, "Details", new { id = item.GenreId })
             </td>
             <td>
-                @Html.ActionLink("Edit", "Edit", new { id = item.GenreId }) |
-                @Html.ActionLink("Delete", "Delete", new { id = item.GenreId })
+                @Html.ActionLink(@Language.Edit, "Edit", new { id = item.GenreId }) |
+                @Html.ActionLink(@Language.Delete, "Delete", new { id = item.GenreId })
             </td>
         </tr>
     }
 </table>
-                      <p>@Html.ActionLink("Create New", "Create")</p>
+                      <p>@Html.ActionLink(@Language.CreateNew, "Create")</p>

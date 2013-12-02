@@ -19,12 +19,12 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                @Html.ActionLink("NetBoox", "Index", "Genre", null, new { @class = "navbar-brand" })
+                @Html.ActionLink(@Language.NetBoox, "Index", "Genre", null, new { @class = "navbar-brand" })
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
-                    <li>@Html.ActionLink("Genres", "Index", "Genre")</li>
-                    <li>@Html.ActionLink("Books", "Index", "Book")</li>
+                    <li>@Html.ActionLink(@Language.Genres, "Index", "Genre")</li>
+                    <li>@Html.ActionLink(@Language.Books, "Index", "Book")</li>
                 </ul>
             </div>
         </div>

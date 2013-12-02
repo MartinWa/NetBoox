@@ -1,10 +1,10 @@
 ﻿@model NetBoox.ViewModels.GenreViewModel
 
 @{
-    ViewBag.Title = "Edit";
+    ViewBag.Title = @Language.Edit;
 }
 
-<h2>Edit</h2>
+<h2>@Language.Edit</h2>
 
 
 @using (Html.BeginForm())
@@ -12,7 +12,7 @@
     @Html.AntiForgeryToken()
     
     <div class="form-horizontal">
-        <h4>Genre</h4>
+        <h4>@Language.Genre</h4>
         <hr />
         @Html.ValidationSummary(true)
         @Html.HiddenFor(model => model.GenreId)
@@ -27,14 +27,14 @@
 
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Save" class="btn btn-default" />
+                <input type="submit" value=@Language.Save class="btn btn-default" />
             </div>
         </div>
     </div>
 }
 
 <div>
-    @Html.ActionLink("Back to List", "Index")
+    @Html.ActionLink(@Language.Back, "Index")
 </div>
 
 @section Scripts {

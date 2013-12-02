@@ -4,7 +4,7 @@
     ViewBag.Title = @Model.GenreViewModel.GenreName;
 }
 
-<h2>Genre: @Model.GenreViewModel.GenreName</h2>
+<h2>@Language.Genre @Model.GenreViewModel.GenreName</h2>
 
 @{Html.RenderPartial("BookList", Model.BookViewModelList);}
 
@@ -14,8 +14,8 @@
 }
 
 <p>
-    @Html.ActionLink("Edit genre name", "Edit", new { id = Model.GenreViewModel.GenreId }) |
-    @Html.ActionLink("Back to List", "Index")
+    @Html.ActionLink(@Language.EditGenreName, "Edit", new { id = Model.GenreViewModel.GenreId }) |
+    @Html.ActionLink(@Language.Back, "Index")
 </p>
 
 @section Scripts {
