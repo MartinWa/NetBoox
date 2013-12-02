@@ -118,75 +118,75 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="Add" xml:space="preserve">
-    <value>[Åđđ !!! !!!]</value>
+    <value>Lägg till</value>
   </data>
   <data name="AddNewBook" xml:space="preserve">
-    <value>[Åđđ ŉęŵ þőőĸ !!! !!!]</value>
+    <value>Lägg till ny bok</value>
   </data>
   <data name="AnErrorOccuredProcessingRequest" xml:space="preserve">
-    <value>[Åŉ ęřřőř őččūřřęđ ŵĥįľę přőčęşşįŉģ yőūř řęqūęşŧ. !!! !!! !!!]</value>
+    <value>Ett fel inträffade under behandlingen av din förfrågan</value>
   </data>
   <data name="AreYouSureDelete" xml:space="preserve">
-    <value>[Åřę yőū şūřę yőū ŵäŉŧ ŧő đęľęŧę ŧĥįş? !!! !!!]</value>
+    <value>Är du säker på att ta bort?</value>
   </data>
   <data name="Author" xml:space="preserve">
-    <value>[Åūŧĥőř !!! !!! !!! !!! !!!]</value>
+    <value>Författare</value>
   </data>
   <data name="Back" xml:space="preserve">
-    <value>[ßäčĸ !!! !!! !!!]</value>
+    <value>Åter</value>
   </data>
   <data name="Book" xml:space="preserve">
-    <value>[ßőőĸ !!! !!! !!!]</value>
+    <value>Bok</value>
   </data>
   <data name="Books" xml:space="preserve">
-    <value>[ßőőĸş !!! !!! !!! !!!]</value>
+    <value>Böcker</value>
   </data>
   <data name="Create" xml:space="preserve">
-    <value>[Cřęäŧę !!! !!! !!! !!! !!!]</value>
+    <value>Skapa</value>
   </data>
   <data name="CreateNew" xml:space="preserve">
-    <value>[Cřęäŧę ŉęŵ !!! !!!]</value>
+    <value>Skapa ny</value>
   </data>
   <data name="Delete" xml:space="preserve">
-    <value>[Đęľęŧę !!! !!! !!! !!! !!!]</value>
+    <value>Ta bort</value>
   </data>
   <data name="Details" xml:space="preserve">
-    <value>[Đęŧäįľş !!! !!! !!! !!! !!! !!!]</value>
+    <value>Detaljer</value>
   </data>
   <data name="Edit" xml:space="preserve">
-    <value>[Ēđįŧ !!! !!! !!!]</value>
+    <value>Redigera</value>
   </data>
   <data name="EditGenreName" xml:space="preserve">
-    <value>[Ēđįŧ ģęŉřę ŉämę !!! !!!]</value>
+    <value>Redigera genre namn</value>
   </data>
   <data name="Error" xml:space="preserve">
-    <value>[Ēřřőř !!! !!! !!! !!!]</value>
+    <value>Fel</value>
   </data>
   <data name="FieldMaxLength160" xml:space="preserve">
-    <value>[Ŧĥįş ƒįęľđ čäŉ þę mäχįmūm 160 čĥäřäčŧęřş ľőŉģ !!! !!!]</value>
+    <value>Detta fält kan vara maximalt 160 tecken långt</value>
   </data>
   <data name="FieldRequired" xml:space="preserve">
-    <value>[Ŧĥįş ƒįęľđ įş řęqūįřęđ !!! !!!]</value>
+    <value>Obligatoriskt fält</value>
   </data>
   <data name="Genre" xml:space="preserve">
-    <value>[Ğęŉřę !!! !!! !!! !!!]</value>
+    <value>Genre</value>
   </data>
   <data name="Genres" xml:space="preserve">
-    <value>[Ğęŉřęş !!! !!! !!! !!! !!!]</value>
+    <value>Genrer</value>
   </data>
   <data name="NetBoox" xml:space="preserve">
-    <value>[Ńęŧßőőχ !!! !!! !!! !!! !!! !!!]</value>
+    <value>NetBoox</value>
   </data>
   <data name="Range1to5" xml:space="preserve">
-    <value>[Väľūę ĥäş ŧő þę þęŧŵęęŉ 1 äŉđ 5 !!! !!!]</value>
+    <value>Värdet måste vara mellan 1 och 5</value>
   </data>
   <data name="Rating" xml:space="preserve">
-    <value>[Ŗäŧįŉģ !!! !!! !!! !!! !!!]</value>
+    <value>Betyg</value>
   </data>
   <data name="Save" xml:space="preserve">
-    <value>[Ŝävę !!! !!! !!!]</value>
+    <value>Spara</value>
   </data>
   <data name="Title" xml:space="preserve">
-    <value>[Ŧįŧľę !!! !!! !!! !!!]</value>
+    <value>Titel</value>
   </data>
 </root>

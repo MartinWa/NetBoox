@@ -51,6 +51,7 @@
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>Language.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <EmbeddedResource Include="Language.sv.resx" />
     <EmbeddedResource Include="Language.sv-SE.resx" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
