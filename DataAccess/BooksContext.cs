@@ -9,7 +9,7 @@ namespace DataAccess
         {
             Database.SetInitializer<BooksContext>(null);
         }
-        public BooksContext() : base("DefaultConnection") { }
+        public BooksContext() : base("NetBoox_db") { }
         public DbSet<Genre> Genres { get; set; }
         public DbSet<Book> Books { get; set; }
         public new IDbSet<T> Set<T>() where T : class
